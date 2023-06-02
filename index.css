@@ -118,7 +118,7 @@ footer {
 /*** HOME PAGE ***/
 .home-container {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-        url("./assets/images/home-hero.png") no-repeat center center;
+        url("./assets/images/kevin-schmid--grs8iMGqQE-unsplash.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -160,7 +160,9 @@ footer {
 
 /*** ABOUT PAGE ***/
 .about-hero-image {
-    max-width: 100%;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 .about-page-content {
@@ -312,9 +314,66 @@ i[class*="van-type-"] {
     color: #161616;
 }
 
+@media only screen and (min-width: 600px) {
+    header a {
+        font-size: 1.2rem;
+    }
+
+    .home-container {
+        background-position: center bottom;
+    }
+    .home-container h1 {
+        width: 600px;
+    }
+    .home-container p {
+        width: 400px;
+    }
+
+    .about-page-container {
+       display: flex;
+       flex-direction: column;
+    }
+    .about-hero-image {
+        min-height: 100%;
+        width: 50%;
+        margin-left: 1em;
+    }
+    .about-page-content {
+        max-width: 480px;
+    }
+    .about-page-desc {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .about-page-cta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .link-button {
+        align-self: auto;
+    }
+
+    .van-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .van-detail {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 80%;
+    }
+    .van-detail-description {
+        margin-left: 2em;
+    }
+}
+
 .van-detail img {
     border-radius: 5px;
     margin-block: 47px;
+    max-width: 380px;
 }
 
 .van-detail h2 {
