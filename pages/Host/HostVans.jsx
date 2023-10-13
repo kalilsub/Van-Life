@@ -1,13 +1,15 @@
 import React from "react"
-import { Link, defer, useLoaderData, Await } from "react-router-dom"
-import { getHostVans } from "../../api/firebase"
+import { Link, useLoaderData, defer, Await } from "react-router-dom"
+import { getHostVans } from "../../api"
+import { requireAuth } from "../../utils"
 
-export function loader() {
+export async function loader({ request }) {
+    await requireAuth(request)
     return defer({ vans: getHostVans() })
 }
 
 export default function HostVans() {
-    const loaderData = useLoaderData()
+    const dataPromise = useLoaderData()
 
     function renderVanElements(vans) {
         const hostVansEls = vans.map(van => (
@@ -25,7 +27,6 @@ export default function HostVans() {
                 </div>
             </Link>
         ))
-
         return (
             <div className="host-vans-list">
                 <section>
@@ -35,11 +36,12 @@ export default function HostVans() {
         )
     }
 
+
     return (
         <section>
             <h1 className="host-vans-title">Your listed vans</h1>
             <React.Suspense fallback={<h2>Loading vans...</h2>}>
-                <Await resolve={loaderData.vans}>
+                <Await resolve={dataPromise.vans}>
                     {renderVanElements}
                 </Await>
             </React.Suspense>
